@@ -5,10 +5,11 @@ const  PokemonList = () => {
     const [data, setData] = useState()
     const [offset, setOffset] = useState(0)
     const limit = useRef(100)
+    const url = 'https://pokeapi.co/api/v2/pokemon';
     useEffect(() => {
         (async function getData() {
             await axios
-                .get('https://pokeapi.co/api/v2/pokemon', {
+                .get(url, {
                     params: {
                         limit: limit.current,
                         offset,
@@ -17,7 +18,7 @@ const  PokemonList = () => {
                 .then((res) => setData(res.data))
                 .catch((err) => {
                     console.log(err)
-                    return []
+                    // return []
                 })
         })()
     }, [offset])
